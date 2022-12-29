@@ -21,51 +21,42 @@ export function InputFile() {
     })
   }
 
-  // console.log(fileData);
+  const selectMonths = Object.values(fileData.reduce(function (months, item) {
+    months[item.mes] = months[item.mes] || []
+    months[item.mes].push(item)
+    return months
+  }, {}));
 
-  const mesUm = fileData.filter((item) => item.mes === '2022-01')
-  // console.log(mesUm)
+  console.log(selectMonths)
 
-  let total = 0;
-  const valorTotal = [...Array.from(new Set(mesUm.forEach(element => {
-    total += element.valor
-  })))]
-  console.log(`Valor total do mês: $${total}`);
+  // let total = 0;
+  // const valorTotal = [...Array.from(new Set(mesUm.forEach(element => {
+  //   total += element.valor
+  // })))]
+  // console.log(`Valor total do mês: $${total}`);
 
+  // const mesUmaberto = fileData.filter((item) => item.mes === '2022-01' && item.status === 'aberto')
+  // // console.log(mesUmaberto)
 
+  // let totalAberto = 0;
+  // const valorTotalAberto = [...Array.from(new Set(mesUmaberto.forEach(element => {
+  //   totalAberto += element.valor
+  // })))]
+  // console.log(`Valor total em aberto do mês: $${totalAberto}`);
 
-  const mesUmaberto = fileData.filter((item) => item.mes === '2022-01' && item.status === 'aberto')
-  // console.log(mesUmaberto)
+  // let inadiplenciaMesUm = (totalAberto / total).toFixed(3);
+  // let inadiplenciaMesUmpercent = inadiplenciaMesUm * 100;
 
-  let totalAberto = 0;
-  const valorTotalAberto = [...Array.from(new Set(mesUmaberto.forEach(element => {
-    totalAberto += element.valor
-  })))]
-  console.log(`Valor total em aberto do mês: $${totalAberto}`);
+  // console.log(`Valor da inadiplência: ${inadiplenciaMesUm} ou ${inadiplenciaMesUmpercent}%`);
 
-  let inadiplenciaMesUm = (totalAberto / total).toFixed(3);
-  let inadiplenciaMesUmpercent = inadiplenciaMesUm * 100;
+  // // const statusAberto = [...Array.from(new Set(mesUm.filter((item) => item.status === 'aberto')))]
+  // // console.log(statusAberto);
 
-  console.log(`Valor da inadiplência: ${inadiplenciaMesUm} ou ${inadiplenciaMesUmpercent}%`);
-
-  // const statusAberto = [...Array.from(new Set(mesUm.filter((item) => item.status === 'aberto')))]
-  // console.log(statusAberto);
-
-  // const statuspAgo = [...Array.from(new Set(mesUm.filter((item) => item.status === 'pago')))]
-  // console.log(statuspAgo);
-
-
-
-
-
-
-
-
-
+  // // const statuspAgo = [...Array.from(new Set(mesUm.filter((item) => item.status === 'pago')))]
+  // // console.log(statuspAgo);  
 
 
   return (
-
     <div className={styles.container}>
       <input type="file"
         name="file"
@@ -73,6 +64,5 @@ export function InputFile() {
         onChange={onChangeHandler}
       />
     </div>
-
   )
 }
