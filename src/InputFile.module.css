@@ -3,4 +3,16 @@
   background: rgba(0, 113, 241, 0.459);
   /* border: 2px solid rgb(10, 175, 252); */
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+button {
+  margin: 0.5rem;
+  height: 30px;
+  width: 120px;
+  cursor: pointer;
 }
