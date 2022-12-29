@@ -3,7 +3,9 @@ import { InputFile } from './InputFile';
 
 function App() {
   return (
-    <InputFile />
+  
+      <InputFile />
+  
   )
 }
 export default App;
