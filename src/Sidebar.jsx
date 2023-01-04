@@ -1,6 +1,10 @@
 import { CalendarCheck, ChartBar, CodepenLogo, FileCsv, ListDashes, MagnifyingGlass, Student, Table, Users } from "phosphor-react";
+import { TableData } from "./Components/TableData";
+import { Dashboard } from "./Dashboard";
 import { InputFile } from "./InputFile";
 import styles from './Sidebar.module.css'
+
+
 export function Sidebar() {
   return (
 
@@ -8,35 +12,37 @@ export function Sidebar() {
       <div className={styles.sidebar}>
 
         <div className={styles.sidebar_logo}>
-          <h2><span><CodepenLogo size={32} weight="bold" /></span>Principia</h2>
+          <CodepenLogo size={32} weight="bold" />
+          <h2>Principia</h2>
         </div>
 
         <div className={styles.sidebar_menu}>
 
 
-          <li><a href="" className={styles.active}><span><ChartBar size={32} /></span>
-            <span>Estatística</span></a>
+          <li><a href="" className={styles.active}>
+            <ChartBar size={32} />
+            <span>Dashboard</span></a>
           </li>
-          <li><a href=""><span><Table size={32} /></span>
+          <li><a href=""><Table size={32} />
             <span>Tabela de dados</span></a>
           </li>
-          <li><a href=""><span><Users size={32} /></span>
+          <li><a href="">
+            <Users size={32} />
             <span>Matriculas</span></a>
           </li>
-
-
 
         </div>
       </div>
 
       <div className={styles.main_container}>
         <header>
-          <h2>
-            <label for="">
-              <span><ListDashes size={32} /></span>
-            </label>
-            Dashboard
-          </h2>
+          <div className={styles.updatefile}>
+            <ListDashes size={32} />
+            {/* <h2>
+              Dashboard
+            </h2> */}
+          </div>
+
 
           <div className={styles.updatefile}>
             <span> <FileCsv size={32} /></span>
@@ -58,33 +64,70 @@ export function Sidebar() {
 
         <main>
 
-          <div className={styles.cards}>
+          <div className={styles.dashboard}>
 
-            <div className={styles.card_single}>
-              <div>
-                <h1>82</h1>
-                <span>Matriculas</span>
+            <div className={styles.cards}>
+              <div className={styles.card_single}>
+                <div>
+                  <h1>82</h1>
+                  <span>Matriculas</span>
+                </div>
+                <div>
+                  <span><Student /></span>
+                </div>
+              </div>
+
+
+              <div className={styles.card_single}>
+                <div>
+                  <h1>4</h1>
+                  <span>Total Aberto</span>
+                </div>
+                <div>
+                  <span><CalendarCheck /></span>
+                </div>
+              </div>
+
+              <div className={styles.card_single}>
+                <div>
+                  <h1>4</h1>
+                  <span>Total Pago</span>
+                </div>
+                <div>
+                  <span><CalendarCheck /></span>
+                </div>
+              </div>
+
+              <div className={styles.card_single}>
+                <div>
+                  <h1>4</h1>
+                  <span>Meses</span>
+                </div>
+                <div>
+                  <span><CalendarCheck /></span>
+                </div>
               </div>
             </div>
-            <div>
-              <span><Student size={32} /></span>
-            </div>
 
-            <div className={styles.card_single}>
-              <div>
-                <h1>4</h1>
-                <span>Meses</span>
-              </div>
-            </div>
-            <div>
-              <span><CalendarCheck size={32} /></span>
-            </div>
+            <div className={styles.barchart}>
+              <Dashboard />
+              <Dashboard />
 
+            </div>
+            <div className={styles.table}>
+            <TableData />
+            <TableData />
+            </div>
           </div>
 
 
+
+
+
         </main>
+
       </div >
+
     </>
   )
 }

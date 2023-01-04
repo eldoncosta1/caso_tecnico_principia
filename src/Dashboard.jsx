@@ -31,7 +31,7 @@ export function Dashboard() {
         position: "top",
       },
       title: {
-        display: true,
+        display: false,
         text: "Chart.js Bar Chart",
       },
     },
@@ -86,12 +86,12 @@ export function Dashboard() {
   return (
     <div className={styles.container}>
 
-      <div className={styles.valores}>
+      {/* <div className={styles.valores}>
         <div>Total Pago <b>R$ {_valorPago}</b></div>
         <div>Total em aberto <b>R$ {_valorAberto}</b></div>
         <div>Total <b>R$ {_valorTotal}</b></div>
         <div>Inadimplência Total<b> R$ {_inadimplencia}</b></div>
-      </div>
+      </div> */}
 
       <Bar
         options={options}

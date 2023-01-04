@@ -1,26 +1,29 @@
 .sidebar {
-  width: 21.563rem;
+  width: 15rem;
   background: #0f70b7;
   left: 0;
   top: 0;
   height: 100%;
   position: fixed;
-  border: 2px solid red;
+  /* border: 2px solid red; */
+  z-index: 100;
 }
 
 .sidebar_logo {
-  height: 75px;
-  padding: 1rem 0rem 1rem 2rem;
-  color: #fff;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+  gap: 1rem;
+  color: #C2E15C;
 
-.sidebar_logo span {
-  display: inline-block;
-  padding-right: 1rem;
 }
 
 .sidebar_menu {
   margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
 }
 
 .sidebar_menu li {
@@ -29,10 +32,14 @@
   padding-left: 1rem;
 }
 
+
 .sidebar_menu a {
   padding-left: 1rem;
-  display: block;
-  color: #fff;
+  gap: 1rem;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  color: #C2E15C;
   font-size: 1.1rem;
 }
 
@@ -50,14 +57,30 @@
 }
 
 .main_container {
-  margin-left: 21.563rem;
+  margin-left: 15rem;
 }
 
 header {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  padding: 0.7rem;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0.7rem 1.5rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  left: 15rem;
+  width: calc(100%-345px);
+  top: 0;
+  z-index: 100;
+
+  background-color: #C2E15C;
+}
+
+header h2 {
+  color: #0f70b7;
+}
+
+.main_container_title {
+  display: flex;
+  border: 2px solid red;
 }
 
 .updatefile {
@@ -78,7 +101,61 @@ header {
   margin-right: 1rem;
 }
 
-/* .user_wrapper small {
-  display: inline-block;
-  margin-top: -10px !important;
-} */
+main {
+  margin-top: 4px;
+  padding: 2rem 1.5rem;
+  background: #7c7c7c1a;
+  min-height: 100vh;
+}
+
+.dashbord {
+  display: flex;
+  flex-direction: column;
+}
+
+.cards {
+  border: 2px solode green;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2rem;
+}
+
+.card_single {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.card_single:hover {
+  background-color: #C2E15C;
+}
+
+.card_single div:last-child span {
+  font-size: 3rem;
+  color: #0f70b7;
+}
+
+.card_single div:first-child span {
+  color: gray;
+}
+
+.barchart {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
