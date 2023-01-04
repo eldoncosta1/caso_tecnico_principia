@@ -1,0 +1,23 @@
+.container {
+  border: 2px solid lightblue;
+  border-radius: 10px;
+  margin-top: 2rem;
+  padding: 2rem;
+}
+
+.valores {
+  display: flex;
+}
+
+.valores>div {
+  background: rgba(240, 128, 128, 0.493);
+  border: 5px solid lightblue;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+
+}
+
+.valores>div:hover {
+  background-color: rgba(245, 88, 88, 0.493);
+}

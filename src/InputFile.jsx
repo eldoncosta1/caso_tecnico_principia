@@ -33,13 +33,11 @@ export function InputFile() {
     }, {})
   }
 
-  console.log(fileData)
-
-  const meses = groupBy(fileData, "mes");
-  console.log(meses)
-
-  const keys = Object.keys(meses);
-  console.log(keys)
+  // console.log(fileData);
+  const months = groupBy(fileData, "mes");
+  // console.log(months)
+  const keys = Object.keys(months);
+  // console.log(keys)
 
   const extractByMonth = [];
   const baddebtByMonth = [];
@@ -47,72 +45,38 @@ export function InputFile() {
   for (let i = 0; i < keys.length; i++) {
 
     const keyI = keys[i];
-    let _valorAberto = 0;
-    let _valorTotal = 0;
-    let _valorPago = 0;
+    let _totalAmountOpen = 0;
+    let _totalAmountPaid = 0;
+    let _totalAmount = 0;
 
     for (let j = 0; j <= i; j++) {
       const keyJ = keys[j];
-      _valorAberto += meses[keyJ]
+      _totalAmountOpen += months[keyJ]
         .filter((item) => item.status == "aberto")
         .reduce((acc, item) => acc + parseFloat(item.valor), 0);
-      _valorPago += meses[keyJ]
+      _totalAmountPaid += months[keyJ]
         .filter((item) => item.status == "pago")
         .reduce((acc, item) => acc + parseFloat(item.valor), 0);
-      _valorTotal += meses[keyJ]
+      _totalAmount += months[keyJ]
         .reduce((acc, item) => acc + parseFloat(item.valor), 0);
     }
 
     extractByMonth.push({
       mes: keyI,
-      valorPago: _valorPago,
-      valorAberto: _valorAberto,
-      valorTotal: _valorTotal
+      totalValorPago: _totalAmountPaid,
+      totalValorAberto: _totalAmountOpen,
+      valorTotal: _totalAmount
     })
 
-    const badDebt = _valorAberto / _valorTotal;
+    let inadimplencia = Number((_totalAmountOpen / _totalAmount).toFixed(3));
     baddebtByMonth.push({
       mes: keyI,
-      inadiplencia: badDebt,
+      inadimplencia: inadimplencia,
     })
   }
-  console.log(extractByMonth);
-  console.log(baddebtByMonth);
 
-
-
-  // const selectMonths = Object.values(fileData.reduce(function (months, item) {
-  //   months[item.mes] = months[item.mes] || []
-  //   months[item.mes].push(item)
-  //   return months
-  // }, {}));
-  // console.log(selectMonths)
-
-  // let total = 0;
-  // const valorTotal = [...Array.from(new Set(mesUm.forEach(element => {
-  //   total += element.valor
-  // })))]
-  // console.log(`Valor total do mês: $${total}`);
-
-
-
-  // let totalAberto = 0;
-  // const valorTotalAberto = [...Array.from(new Set(mesUmaberto.forEach(element => {
-  //   totalAberto += element.valor
-  // })))]
-  // console.log(`Valor total em aberto do mês: $${totalAberto}`);
-
-  // let inadiplenciaMesUm = (totalAberto / total).toFixed(3);
-  // let inadiplenciaMesUmpercent = inadiplenciaMesUm * 100;
-
-  // console.log(`Valor da inadiplência: ${inadiplenciaMesUm} ou ${inadiplenciaMesUmpercent}%`);
-
-  // // const statusAberto = [...Array.from(new Set(mesUm.filter((item) => item.status === 'aberto')))]
-  // // console.log(statusAberto);
-
-  // // const statuspAgo = [...Array.from(new Set(mesUm.filter((item) => item.status === 'pago')))]
-  // // console.log(statuspAgo);  
-
+  // console.log(extractByMonth);
+  // console.log(baddebtByMonth);
 
   return (
     <div className={styles.container}>
