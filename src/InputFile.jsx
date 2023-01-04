@@ -33,7 +33,7 @@ export function InputFile() {
     }, {})
   }
 
-  // console.log(fileData);
+  console.log(fileData);
   const months = groupBy(fileData, "mes");
   // console.log(months)
   const keys = Object.keys(months);

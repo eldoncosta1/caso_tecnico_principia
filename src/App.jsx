@@ -2,13 +2,13 @@ import styles from './App.module.css'
 import { Dashboard } from './Dashboard';
 
 import { InputFile } from './InputFile';
+import { Sidebar } from './Sidebar';
 
 function App() {
   return (
     <div className={styles.container}>
       <>
-        <InputFile />
-        <Dashboard />
+        <Sidebar />
       </>
     </div>
   )
