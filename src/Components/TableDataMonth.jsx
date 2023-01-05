@@ -1,8 +1,17 @@
+import { useContext, useEffect } from 'react'
+import { DataContext } from '../Context/DataContext';
 import styles from './TableDataMonth.module.css'
 
 export function TableDataMonth() {
-  return (
+  const { dataFile } = useContext(DataContext);
 
+  console.log(dataFile.length)
+  useEffect(() => {
+    //processa dataFile e salva as variaveis de estado
+
+  }, [])
+
+  return (
 
     <div className={styles.card}>
       <div className={styles.card_header}>
@@ -21,29 +30,14 @@ export function TableDataMonth() {
             </thead>
             <tbody>
 
-              <tr>
-                <td>Janeiro - 2022</td>
-                <td>R$ 0.250</td>
-
+             {dataFile.length > 0 ? dataFile.map(item => (
+              <tr key={JSON.stringify(item)}>
+                <td>{item.matricula}</td>
+                <td>{item.mes}</td>
+                <td>{item.valor}</td>
+                <td>{item.status}</td>
               </tr>
-
-              <tr>
-                <td>Fevereiro - 2022</td>
-                <td>R$ 0.287</td>
-
-              </tr>
-
-              <tr>
-                <td>Março - 2022</td>
-                <td>R$ 0.541</td>
-
-              </tr>
-
-              <tr>
-                <td>Abril - 2022</td>
-                <td>R$ 0.533</td>
-              </tr>
-
+             )) : null}
             </tbody>
           </table>
         </div>

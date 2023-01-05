@@ -1,5 +1,5 @@
 import { DataContext } from './Context/DataContext';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './Dashboard.module.css'
 import { Bar } from "react-chartjs-2";
 import {
@@ -24,8 +24,7 @@ ChartJS.register(
 export function Dashboard() {
 
   const { extractByMonth, baddebtByMonth } = useContext(DataContext);
-
-
+  const [inadimplencia, setInadimplencia] = useState()
 
   const options = {
     responsive: true,
@@ -40,26 +39,27 @@ export function Dashboard() {
     },
   };
 
-  // const labels = extractByMonth.map(
-  //   function (index) {
-  //     return index.mes;
-  //   }
-  // );
+  const labels = extractByMonth.map(
+    function (index) {
+      return index.mes;
+    }
+  );   
 
-  // const datas = baddebtByMonth.map(
-  //   function (item) {
-  //     return parseFloat(item.inadimplencia)
-  //   }
-  // );
+  useEffect(() => {    
+    setInadimplencia(baddebtByMonth.map(
+      function (item) {
+        return parseFloat(item.inadimplencia)
+      }
+    ));
+  }, [baddebtByMonth])
 
-  const labels = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho"];
-  const data = {
-    labels: labels,
+  // const labels = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho"];
+  const chartData = {
+    labels,
     datasets: [{
       label: 'Inadimplência Mensal',
-      data:
-        // datas,
-        [65, 59, 80, 81, 56, 55, 40],
+      data: inadimplencia,
+        // [65, 59, 80, 81, 56, 55, 40],
       backgroundColor: [
 
         'rgba(54, 162, 235, 0.2)',
@@ -83,7 +83,7 @@ export function Dashboard() {
     <div className={styles.container}>
       <Bar
         options={options}
-        data={data} />
+        data={chartData} />
     </div>
 
   )

@@ -5,7 +5,7 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
 
   const [dataFile, setDataFile] = useState(() => {
-    const file = localStorage.getItem('');
+    const file = localStorage.getItem('@principia@dataFile');
 
     if (file) {
       return JSON.parse(file);
@@ -14,35 +14,49 @@ export const DataProvider = ({ children }) => {
   });
 
   const [extractByMonth, setExtractByMonth] = useState(() => {
-    const fileExtractByMonth = localStorage.getItem('');
-
+    const fileExtractByMonth = localStorage.getItem('@principia@extractByMonth');
+    console.log(fileExtractByMonth)
     if (fileExtractByMonth) {
       return JSON.parse(fileExtractByMonth);
     }
-    return {}
+    return []
   });
 
   const [baddebtByMonth, setBaddebtByMonth] = useState(() => {
-    const fileBaddebtByMonth = localStorage.getItem('');
+    const fileBaddebtByMonth = localStorage.getItem('@principia@baddebtByMonth');
 
-    if (!fileBaddebtByMonth) {
+    if (fileBaddebtByMonth) {
       return JSON.parse(fileBaddebtByMonth);
     }
-    return {};
+    return [];
   });
 
+  const [totalInadimplencia, setTotalInadimplencia] = useState(() => {
+    const inadimplencia = localStorage.getItem('@principia#inadimplencia');
+
+    if(!inadimplencia) return 0;
+
+    return JSON.parse(inadimplencia)
+  })
+
+  // useEffect(() => {
+  //   localStorage.setItem('@principia#inadimplencia', JSON.stringify(totalInadimplencia));
+
+  // }, [totalInadimplencia]);
+
   useEffect(() => {
-    localStorage.setItem('', JSON.stringify(dataFile));
+    localStorage.setItem('@principia@dataFile', JSON.stringify(dataFile));
 
   }, [dataFile]);
 
   useEffect(() => {
-    localStorage.setItem('', JSON.stringify(extractByMonth));
+    console.log(extractByMonth)
+    localStorage.setItem('@principia@extractByMonth', JSON.stringify(extractByMonth));
 
   }, [extractByMonth]);
 
   useEffect(() => {
-    localStorage.setItem('', JSON.stringify(baddebtByMonth));
+    localStorage.setItem('@principia@baddebtByMonth', JSON.stringify(baddebtByMonth));
 
   }, [baddebtByMonth]);
 

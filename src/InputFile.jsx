@@ -70,9 +70,11 @@ export function InputFile() {
         inadimplencia: inadimplencia,
       })
     }
-    setDataFile(inputFileData);
-    setBaddebtByMonth(baddebtByMonth);
-    setExtractByMonth(extractByMonth);
+    if(inputFileData.length){
+      setDataFile(inputFileData);
+      setBaddebtByMonth(baddebtByMonth);
+      setExtractByMonth(extractByMonth);
+    }
     // console.log(extractByMonth);
     // console.log(baddebtByMonth);
   }, [inputFileData])
