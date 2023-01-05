@@ -1,13 +1,15 @@
+import { useContext, useEffect, useState } from 'react';
+import { DataContext } from './Context/DataContext';
 import styles from './InputFile.module.css'
 import Papa from 'papaparse';
-import { useEffect, useState } from 'react';
 import moment from 'moment/moment';
 import 'moment/locale/pt-br'
+
 moment.locale('pt-br');
 
 export function InputFile() {
-  const [fileData, setFileData] = useState([]);
-  // const [inputFileData, setinputFileData] = useState([]);
+  const [inputFileData, setinputFileData] = useState([]);
+  const { setDataFile, setExtractByMonth, setBaddebtByMonth } = useContext(DataContext);
 
   const onChangeHandler = async (e) => {
     e.preventDefault();
@@ -17,7 +19,7 @@ export function InputFile() {
       skipEmptyLines: true,
       // dynamicTyping: true,
       complete: function (results) {
-        setFileData(results.data.map(item => {
+        setinputFileData(results.data.map(item => {
           item.valor = Number(item.valor);
           item.mes = moment(item.mes).format('MMMM YYYY')
           return item;
@@ -27,8 +29,8 @@ export function InputFile() {
   }
 
   useEffect(() => {
-    console.log(fileData);
-    const months = groupBy(fileData, "mes");
+    // console.log(inputFileData);
+    const months = groupBy(inputFileData, "mes");
     // console.log(months)
     const keys = Object.keys(months);
     // console.log(keys)
@@ -68,12 +70,14 @@ export function InputFile() {
         inadimplencia: inadimplencia,
       })
     }
-    localStorage.setItem('fileData', JSON.stringify(fileData));
-    localStorage.setItem('extractByMonth', JSON.stringify(extractByMonth));
-    localStorage.setItem('baddebtByMonth', JSON.stringify(baddebtByMonth));
+    setDataFile(inputFileData);
+    setBaddebtByMonth(baddebtByMonth);
+    setExtractByMonth(extractByMonth);
     // console.log(extractByMonth);
     // console.log(baddebtByMonth);
-  }, [fileData])
+  }, [inputFileData])
+
+
 
   function groupBy(array, key) {
     return array.reduce((acc, item) => {

@@ -1,38 +1,53 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
+
   const [dataFile, setDataFile] = useState(() => {
-    const file = localStorage.getItem('fileData');
+    const file = localStorage.getItem('');
+
     if (file) {
       return JSON.parse(file);
     }
     return {};
-  }
-  );
+  });
 
   const [extractByMonth, setExtractByMonth] = useState(() => {
-    const fileExtract = localStorage.getItem('extractByMonth');
-    if (fileExtract) {
-      return JSON.parse(fileExtract);
+    const fileExtractByMonth = localStorage.getItem('');
+
+    if (fileExtractByMonth) {
+      return JSON.parse(fileExtractByMonth);
     }
-    return {};
-  }
-  );
+    return {}
+  });
 
   const [baddebtByMonth, setBaddebtByMonth] = useState(() => {
-    const fileBaddebt = localStorage.getItem('baddebtByMonth');
-    if (fileBaddebt) {
-      return JSON.parse(fileBaddebt);
+    const fileBaddebtByMonth = localStorage.getItem('');
+
+    if (!fileBaddebtByMonth) {
+      return JSON.parse(fileBaddebtByMonth);
     }
     return {};
-  }
-  );
+  });
 
+  useEffect(() => {
+    localStorage.setItem('', JSON.stringify(dataFile));
+    setDataFile(dataFile)
+  }, [dataFile]);
+
+  useEffect(() => {
+    localStorage.setItem('', JSON.stringify(extractByMonth));
+    setExtractByMonth(extractByMonth)
+  }, [extractByMonth]);
+
+  useEffect(() => {
+    localStorage.setItem('', JSON.stringify(baddebtByMonth));
+    setBaddebtByMonth(baddebtByMonth)
+  }, [baddebtByMonth]);
 
   return (
-    <DataContext.Provider values={{ dataFile, setDataFile, extractByMonth, setExtractByMonth, baddebtByMonth, setBaddebtByMonth }}>
+    <DataContext.Provider value={{ dataFile, setDataFile, extractByMonth, setExtractByMonth, baddebtByMonth, setBaddebtByMonth }}>
       {children}
     </DataContext.Provider>
   )

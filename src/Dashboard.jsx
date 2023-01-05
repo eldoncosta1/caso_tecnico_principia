@@ -1,3 +1,5 @@
+import { DataContext } from './Context/DataContext';
+import { useContext } from 'react';
 import styles from './Dashboard.module.css'
 import { Bar } from "react-chartjs-2";
 import {
@@ -9,8 +11,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { useContext } from 'react';
-import { DataContext } from './Context/DataContext';
 
 ChartJS.register(
   CategoryScale,
@@ -21,13 +21,10 @@ ChartJS.register(
   Legend
 );
 
-
 export function Dashboard() {
 
-  // const { dataFile } = useContext(DataContext);
-  // console.log(dataFile);
-
-
+  const { dataFile, extractByMonth, baddebtByMonth } = useContext(DataContext);
+  console.log(dataFile);
 
   const options = {
     responsive: true,
@@ -42,7 +39,7 @@ export function Dashboard() {
     },
   };
 
-  // const labels = baddebtByMonth.map(
+  // const labels = extractByMonth.map(
   //   function (index) {
   //     return index.mes;
   //   }
