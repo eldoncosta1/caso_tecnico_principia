@@ -1,5 +1,5 @@
 import styles from './Dashboard.module.css'
-
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,8 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
-import { Bar } from "react-chartjs-2";
+import { useContext } from 'react';
+import { DataContext } from './Context/DataContext';
 
 ChartJS.register(
   CategoryScale,
@@ -23,6 +23,11 @@ ChartJS.register(
 
 
 export function Dashboard() {
+
+  // const { dataFile } = useContext(DataContext);
+  // console.log(dataFile);
+
+
 
   const options = {
     responsive: true,

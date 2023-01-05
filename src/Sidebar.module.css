@@ -104,7 +104,7 @@ header h2 {
 main {
   margin-top: 4px;
   padding: 2rem 1.5rem;
-  background: #7c7c7c1a;
+  background: rgba(196, 194, 194, 0.226);
   min-height: 100vh;
 }
 
