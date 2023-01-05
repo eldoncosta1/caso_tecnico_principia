@@ -1,11 +1,17 @@
+import { months } from "moment";
 import { CalendarCheck, ChartBar, CodepenLogo, FileCsv, ListDashes, MagnifyingGlass, Student, Table, Users } from "phosphor-react";
 import { TableData } from "./Components/TableData";
+import { TableDataMonth } from "./Components/TableDataMonth";
 import { Dashboard } from "./Dashboard";
 import { InputFile } from "./InputFile";
 import styles from './Sidebar.module.css'
 
 
 export function Sidebar() {
+
+  // const { extractByMonth } = useContext(DataContext);
+  // const MonthsQtd = extractByMonth.length;
+
   return (
 
     <>
@@ -35,13 +41,16 @@ export function Sidebar() {
       </div>
 
       <div className={styles.main_container}>
+
         <header>
-          <div className={styles.updatefile}>
+
+
+          {/* <div className={styles.updatefile}>
             <ListDashes size={32} />
-            {/* <h2>
+            <h2>
               Dashboard
-            </h2> */}
-          </div>
+            </h2>
+          </div> */}
 
 
           <div className={styles.updatefile}>
@@ -69,7 +78,7 @@ export function Sidebar() {
             <div className={styles.cards}>
               <div className={styles.card_single}>
                 <div>
-                  <h1>82</h1>
+                  <h1>190</h1>
                   <span>Matriculas</span>
                 </div>
                 <div>
@@ -115,8 +124,8 @@ export function Sidebar() {
 
             </div>
             <div className={styles.table}>
-            <TableData />
-            <TableData />
+              <TableData />
+              <TableDataMonth />
             </div>
           </div>
 

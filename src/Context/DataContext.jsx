@@ -33,17 +33,17 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('', JSON.stringify(dataFile));
-    setDataFile(dataFile)
+
   }, [dataFile]);
 
   useEffect(() => {
     localStorage.setItem('', JSON.stringify(extractByMonth));
-    setExtractByMonth(extractByMonth)
+
   }, [extractByMonth]);
 
   useEffect(() => {
     localStorage.setItem('', JSON.stringify(baddebtByMonth));
-    setBaddebtByMonth(baddebtByMonth)
+
   }, [baddebtByMonth]);
 
   return (

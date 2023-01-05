@@ -145,7 +145,7 @@ main {
 .barchart {
   margin-top: 25px;
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: space-between;
 }
 

@@ -29,7 +29,7 @@ export function InputFile() {
   }
 
   useEffect(() => {
-    // console.log(inputFileData);
+    console.log(inputFileData);
     const months = groupBy(inputFileData, "mes");
     // console.log(months)
     const keys = Object.keys(months);
